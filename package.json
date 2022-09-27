@@ -1,20 +1,24 @@
 {
-  "name": "webpack-package",
+  "name": "rss-aggregator",
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "test": "jest --colors"
+    "test": "jest --colors",
+    "webpack": "webpack",
+    "build": "webpack --mode=development",
+    "prod": "webpack --mode=production",
+    "serve": "webpack serve"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/webpack-package.git"
+    "url": "git+https://github.com/ArkadiySamokhvalov/rss-aggregator.git"
   },
-  "author": "Kirill Mokevnin",
+  "author": "Arkadiy Samokhvalov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hexlet-boilerplates/webpack-package/issues"
+    "url": "https://github.com/ArkadiySamokhvalov/rss-aggregator/issues"
   },
-  "homepage": "https://github.com/hexlet-boilerplates/webpack-package#readme",
+  "homepage": "https://github.com/ArkadiySamokhvalov/rss-aggregator#readme",
   "jest": {
     "verbose": true,
     "testURL": "http://localhost/",
@@ -47,8 +51,12 @@
     "webpack-dev-server": "^4.1.1"
   },
   "dependencies": {
+    "bootstrap": "^5.2.1",
+    "i18next": "^21.9.2",
     "npm-check-updates": "^11.8.5",
+    "on-change": "^4.0.1",
     "sass": "^1.39.0",
-    "sass-loader": "^12.1.0"
+    "sass-loader": "^12.1.0",
+    "yup": "^0.32.11"
   }
 }
