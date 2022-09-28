@@ -2,19 +2,20 @@
 import onChange from 'on-change';
 // import _ from 'lodash';
 
-const renderError = (error, elements, i18n) => {
-  const { input, feedback } = elements;
+const renderError = (error, { input, feedback }, i18n) => {
   if (error) {
     input.classList.add('is-invalid');
     feedback.classList.add('text-danger');
     feedback.classList.remove('text-success');
     feedback.textContent = i18n(`errors.${error}`);
-  } else {
-    input.classList.remove('is-invalid');
-    feedback.textContent = i18n('succesfulUpload');
-    feedback.classList.remove('text-danger');
-    feedback.classList.add('text-success');
   }
+};
+
+const renderSuccessfulFeedback = ({ input, feedback }, i18n) => {
+  input.classList.remove('is-invalid');
+  feedback.textContent = i18n('succesfulUpload');
+  feedback.classList.remove('text-danger');
+  feedback.classList.add('text-success');
 };
 
 const generateContainer = (title, list) => {
@@ -98,7 +99,21 @@ const renderFeeds = (feeds, elements, i18n) => {
   elements.feeds.append(container);
 };
 
-const handleProcessState = (processState, elements) => {
+const renderSpinner = (container) => {
+  const spinner = document.createElement('div');
+  const text = document.createElement('span');
+
+  spinner.classList.add('spinner-border', 'text-light');
+  text.classList.add('sr-only');
+
+  spinner.setAttribute('role', 'status');
+
+  container.textContent = '';
+  container.append(spinner);
+  container.append(text);
+};
+
+const handleProcessState = (processState, elements, i18n) => {
   const {
     submitBtn, form, input,
   } = elements;
@@ -110,14 +125,18 @@ const handleProcessState = (processState, elements) => {
 
     case 'sending':
       submitBtn.classList.add('disabled');
+      renderSpinner(submitBtn);
       break;
 
     case 'failed':
       submitBtn.classList.remove('disabled');
+      submitBtn.textContent = i18n('addButton');
       break;
 
     case 'finished':
       submitBtn.classList.remove('disabled');
+      submitBtn.textContent = i18n('addButton');
+      renderSuccessfulFeedback(elements, i18n);
       form.reset();
       input.focus();
       break;
@@ -141,7 +160,6 @@ export default (state, elements, i18n) => {
 
       case 'posts':
         renderPosts(value, elements, i18n);
-        console.log('renderPosts');
         break;
 
       case 'feeds':

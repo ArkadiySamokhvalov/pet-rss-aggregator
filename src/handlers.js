@@ -15,17 +15,16 @@ const handleSubmitForm = (e, state, watchedState) => {
   validate(url, watchedState)
     .then(() => { currentWatchedState.processError = null; })
     .then(() => loader(url))
-    .then((response) => {
-      state.listRSS.push(url);
+    .then((data) => {
+      const { feed, posts } = parser(data, uniqueId());
       currentWatchedState.processState = 'finished';
-      const { feed, posts } = parser(response.data.contents, uniqueId());
+      state.listRSS.push(url);
       currentWatchedState.feeds = [feed, ...state.feeds];
       currentWatchedState.posts = [...posts, ...state.posts];
     })
     .catch((error) => {
       currentWatchedState.processState = 'failed';
-      currentWatchedState.processError = error.type;
-      console.log(error);
+      currentWatchedState.processError = error.message;
     });
 };
 

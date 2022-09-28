@@ -9,10 +9,10 @@ export default {
     example: 'Пример',
     succesfulUpload: 'RSS успешно загружен',
     errors: {
-      matches: 'Ресурс не содержит валидный RSS.',
+      parseError: 'Ресурс не содержит валидный RSS.',
       required: 'Поле обязательно для заполнения.',
-      notOneOf: 'RSS уже существует.',
-      url: 'Ссылка должна быть валидным URL.',
+      existRSS: 'RSS уже существует.',
+      uncorrectURL: 'Ссылка должна быть валидным URL.',
       loadError: 'Ошибка сети',
     },
   },

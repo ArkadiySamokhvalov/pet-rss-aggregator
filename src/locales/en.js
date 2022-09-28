@@ -9,10 +9,10 @@ export default {
     example: 'Example',
     succesfulUpload: 'RSS uploaded successfully.',
     errors: {
-      matches: 'The resource does not contain valid RSS.',
+      parseError: 'The resource does not contain valid RSS.',
       required: 'Required field.',
-      notOneOf: 'RSS already exists.',
-      url: 'Link must be a valid URL.',
+      existRSS: 'RSS already exists.',
+      uncorrectURL: 'Link must be a valid URL.',
       loadError: 'Network error.',
     },
   },

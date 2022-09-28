@@ -13,7 +13,6 @@ export default (url, { listRSS }) => {
 
   const schema = object({
     url: string()
-      .matches(/^.{1,}\.rss$/)
       .url()
       .notOneOf([...listRSS]),
   });
