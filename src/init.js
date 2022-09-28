@@ -15,11 +15,12 @@ const app = (i18n) => {
 
   const elements = {
     modal: {
-      btnsClose: document.querySelectorAll('[data-bs-dismiss="modal"]'),
+      closeBtns: document.querySelectorAll('[data-bs-dismiss="modal"]'),
       linkArticle: document.querySelector('.link-article'),
     },
     form: document.querySelector('.rss-form'),
     input: document.getElementById('url-input'),
+    submitBtn: document.querySelector('[type="submit"]'),
     posts: document.querySelector('.posts'),
     feeds: document.querySelector('.feeds'),
     feedback: document.querySelector('.feedback'),
@@ -28,7 +29,7 @@ const app = (i18n) => {
   const watchedState = render(state, elements, i18n);
   const { form } = elements;
 
-  form.addEventListener('submit', (e) => handleSubmitForm(e, watchedState));
+  form.addEventListener('submit', (e) => handleSubmitForm(e, state, watchedState));
 };
 
 export default () => {

@@ -1,7 +1,6 @@
-/* eslint-disable no-param-reassign */
 import { object, string, setLocale } from 'yup';
 
-export default (url, watchedState) => {
+export default (url, { listRSS }) => {
   setLocale({
     mixed: {
       required: () => 'required',
@@ -16,10 +15,8 @@ export default (url, watchedState) => {
     url: string()
       .matches(/^.{1,}\.rss$/)
       .url()
-      .notOneOf([...watchedState.listRSS]),
+      .notOneOf([...listRSS]),
   });
 
-  schema.validate({ url })
-    .then(() => { watchedState.processError = null; })
-    .catch((error) => { watchedState.processError = error.type; });
+  return schema.validate({ url });
 };
