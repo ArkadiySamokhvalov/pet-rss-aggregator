@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/IvanSavDev/frontend-project-lvl3/workflows/nodejs/badge.svg)](https://codeclimate.com/github/ArkadiySamokhvalov/rss-aggregator/actions)
+[![Actions Status](https://github.com/ArkadiySamokhvalov/rss-aggregator/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ArkadiySamokhvalov/rss-aggregator/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e2d5a5acc024f6736236/maintainability)](https://codeclimate.com/github/ArkadiySamokhvalov/rss-aggregator/maintainability)
 
 [![ru](https://img.shields.io/badge/lang-ru-blue.svg)](https://github.com/ArkadiySamokhvalov/rss-aggregator/blob/main/README.md)
