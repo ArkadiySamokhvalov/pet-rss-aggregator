@@ -28,4 +28,22 @@ const handleSubmitForm = (e, state, watchedState) => {
     });
 };
 
-export default handleSubmitForm;
+const handleShowPost = ({ target }, post, state, { modal }) => {
+  const {
+    body, title, linkArticle,
+  } = modal;
+  const { watchedPosts } = state.ui;
+
+  title.textContent = post.title;
+  body.textContent = post.description;
+
+  linkArticle.href = post.link;
+
+  watchedPosts.push(post.id);
+
+  const postTitle = target.previousElementSibling;
+  postTitle.classList.add('fw-normal', 'link-secondary');
+  postTitle.classList.remove('fw-bold');
+};
+
+export { handleSubmitForm, handleShowPost };

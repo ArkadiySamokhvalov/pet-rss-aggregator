@@ -2,6 +2,8 @@
 import onChange from 'on-change';
 // import _ from 'lodash';
 
+import { handleShowPost } from './handlers';
+
 const renderError = (error, { input, feedback }, i18n) => {
   if (error) {
     input.classList.add('is-invalid');
@@ -42,7 +44,8 @@ const generateContainer = (title, list) => {
   return card;
 };
 
-const generatePostsList = (posts, i18n) => posts.map((post) => {
+const generatePostsList = (posts, state, elements, i18n) => posts.map((post) => {
+  const { watchedPosts } = state.ui;
   const li = document.createElement('li');
   const a = document.createElement('a');
   const button = document.createElement('button');
@@ -51,8 +54,13 @@ const generatePostsList = (posts, i18n) => posts.map((post) => {
   button.textContent = i18n('watchButton');
 
   li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
-  a.classList.add('fw-normal', 'link-secondary');
   button.classList.add('btn', 'btn-outline-primary', 'btn-sm');
+
+  if (watchedPosts.includes(post.id)) {
+    a.classList.add('fw-normal', 'link-secondary');
+  } else {
+    a.classList.add('fw-bold');
+  }
 
   a.href = post.link;
   a.setAttribute('target', '_blank');
@@ -61,14 +69,16 @@ const generatePostsList = (posts, i18n) => posts.map((post) => {
   button.setAttribute('data-bs-toggle', 'modal');
   button.setAttribute('data-bs-target', '#modal');
 
+  button.addEventListener('click', (e) => handleShowPost(e, post, state, elements));
+
   li.append(a);
   li.append(button);
 
   return li;
 });
 
-const renderPosts = (posts, elements, i18n) => {
-  const postList = generatePostsList(posts, i18n);
+const renderPosts = (posts, state, elements, i18n) => {
+  const postList = generatePostsList(posts, state, elements, i18n);
   const container = generateContainer(i18n('posts'), postList);
 
   elements.posts.append(container);
@@ -159,7 +169,7 @@ export default (state, elements, i18n) => {
         break;
 
       case 'posts':
-        renderPosts(value, elements, i18n);
+        renderPosts(value, state, elements, i18n);
         break;
 
       case 'feeds':

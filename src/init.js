@@ -2,7 +2,7 @@ import i18next from 'i18next';
 
 import resources from './locales/index.js';
 import render from './view.js';
-import handleSubmitForm from './handlers.js';
+import { handleSubmitForm } from './handlers.js';
 
 const app = (i18n) => {
   const state = {
@@ -11,11 +11,15 @@ const app = (i18n) => {
     listRSS: [],
     feeds: [],
     posts: [],
+    ui: {
+      watchedPosts: [],
+    },
   };
 
   const elements = {
     modal: {
-      closeBtns: document.querySelectorAll('[data-bs-dismiss="modal"]'),
+      body: document.querySelector('.modal-body'),
+      title: document.querySelector('.modal-title'),
       linkArticle: document.querySelector('.link-article'),
     },
     form: document.querySelector('.rss-form'),
@@ -36,9 +40,11 @@ export default () => {
   const i18nextInstance = i18next.createInstance();
   const currentLanguage = localStorage.getItem('language') || 'ru';
 
-  i18nextInstance.init({
-    lng: currentLanguage,
-    debug: true,
-    resources,
-  }).then((t) => app(t));
+  i18nextInstance
+    .init({
+      lng: currentLanguage,
+      debug: true,
+      resources,
+    })
+    .then((t) => app(t));
 };
