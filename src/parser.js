@@ -8,7 +8,11 @@ export default (rss, feedId) => {
     const feedTitleContent = feedTitle.textContent;
     const descriptionFeed = doc.querySelector('channel description');
     const descriptionFeedContent = descriptionFeed.textContent;
-    const feed = { title: feedTitleContent, description: descriptionFeedContent, id: feedId };
+    const feed = {
+      id: feedId,
+      title: feedTitleContent,
+      description: descriptionFeedContent,
+    };
 
     const postsEls = doc.querySelectorAll('item');
     const posts = Array.from(postsEls).map((post) => {

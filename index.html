@@ -45,14 +45,14 @@
     <main class="flex-grow-1">
       <section class="container-fluid bg-dark py-5 p-md-5">
           <div class="row">
-            <div class="col-md-10 col-lg-8 mx-auto text-white">
+            <div class="col col-lg-10 col-xl-8 mx-auto text-white">
               <h1 class="display-3 mb-0">RSS агрегатор</h1>
               <p class="lead">
                 Введите ваш RSS источник и начните читать уже сегодня!
               </p>
               <form action="" class="rss-form text-body">
                 <div class="row flex-wrap">
-                  <div class="col-12 col-sm mb-3 mb-sm-0">
+                  <div class="col mb-3 mb-sm-0">
                     <div class="form-floating">
                       <input
                         id="url-input"
@@ -79,19 +79,21 @@
                 </div>
               </form>
               <p class="mt-2 mb-0 text-muted">
-                Пример: https://ru.hexlet.io/lessons.rss
+                Пример: http://lorem-rss.herokuapp.com/feed?unit=second&interval=5
               </p>
               <p class="feedback m-0 position-absolute small text-danger"></p>
             </div>
           </div>
       </section>
       <section class="container-fluid py-3 p-md-5">
-          <div class="row">
-            <div class="col-md-10 col-lg-8 order-1 mx-auto posts"></div>
-            <div
-              class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds"
-            ></div>
+        <div class="row justify-content-center">
+          <div class="col col-lg-10 col-xl-8">
+            <div class="row">
+              <div class="feeds col-12 p-0 col-md-4"></div>
+              <div class="posts col-12 p-0 col-md-8 order-md-1"></div>
+            </div>
           </div>
+        </div>
       </section>
     </main>
   </body>

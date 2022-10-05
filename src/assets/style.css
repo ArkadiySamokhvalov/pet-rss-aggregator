@@ -1,0 +1,5 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  font-weight: bold;
+  background-color: transparent;
+  color: inherit;
+}
